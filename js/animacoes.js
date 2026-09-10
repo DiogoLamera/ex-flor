@@ -159,7 +159,7 @@
         .to(".marca-texto__barra", { scaleX: 1, duration: 1, ease: "power3.inOut" }, "hero+=0.4")
         .add(tituloHero(), "hero+=0.5")
         .fromTo(".hero__desc", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9 }, "hero+=0.85")
-        .fromTo(".link-seta", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, "hero+=1")
+        .fromTo(".hero .link-seta", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, "hero+=1")
         .fromTo(".selo", { opacity: 0, y: 24, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "back.out(1.7)" }, "hero+=1.15")
         .add(desenharRamos(".hero .ramo"), "hero+=0.6")
         .add(() => App.lenis?.start(), "hero+=0.8")
@@ -441,7 +441,6 @@
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,
-        anticipatePin: 1,
       },
     });
 

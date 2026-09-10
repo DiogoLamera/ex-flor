@@ -32,6 +32,11 @@
   <script src="js/animacoes.js" defer></script>
 </head>
 <body>
+  <!-- Ícone do WhatsApp (Simple Icons, CC0), reutilizado com <use> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-whats" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  </svg>
+
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
   <div class="progresso" aria-hidden="true"><span class="progresso__barra"></span></div>
@@ -71,18 +76,12 @@
         <ul class="menu__lista">
           <li style="--i:0"><a href="#inicio">Início</a></li>
           <li style="--i:1"><a href="#loja">Loja</a></li>
-          <li style="--i:2"><a href="#contato">Contato</a></li>
-          <li style="--i:3"><a href="#portfolio">Portfólio</a></li>
+          <li style="--i:2"><a href="#portfolio">Portfólio</a></li>
+          <li style="--i:3"><a href="#contato">Contato</a></li>
         </ul>
       </nav>
 
       <div class="topo__acoes">
-        <button class="sacola-btn" type="button" aria-label="Abrir sacola, 0 itens" aria-controls="sacola" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
-          </svg>
-          <span class="sacola-btn__qtd" aria-hidden="true">0</span>
-        </button>
         <button class="menu-btn" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -178,41 +177,41 @@
       <div class="container">
         <div class="cabecalho-secao">
           <h2 class="titulo-secao titulo-secao--ponto" data-split>Buquês em alta</h2>
-          <p class="cabecalho-secao__apoio" data-revela>Os queridinhos da semana. Toque no preço para colocar na sacola.</p>
+          <p class="cabecalho-secao__apoio" data-revela>Os queridinhos da semana. Toque no preço para encomendar pelo WhatsApp.</p>
         </div>
 
         <ul class="produtos">
           <li class="produto">
             <figure class="produto__foto"><img src="assets/img/aurora.jpg" alt="Buquê Aurora com rosas creme e cravos rosados" width="640" height="700" loading="lazy"><figcaption>Buquê Aurora</figcaption></figure>
-            <button class="preco" type="button" data-id="aurora" data-nome="Buquê Aurora" data-preco="129.90" data-img="assets/img/aurora.jpg"><span class="preco__valor">R$ 129,90</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+            <a class="preco" href="#contato" data-whats="Olá! Vim pelo site e quero encomendar: Buquê Aurora (R$ 129,90)." aria-label="Encomendar Buquê Aurora, R$ 129,90, pelo WhatsApp"><span class="preco__valor">R$ 129,90</span><span class="preco__acao" aria-hidden="true"><svg><use href="#i-whats"/></svg>Encomendar</span></a>
           </li>
           <li class="produto">
             <figure class="produto__foto"><img src="assets/img/bella-rosa.jpg" alt="Arranjo Bella Rosa com rosas pink, creme e brancas" width="640" height="700" loading="lazy"><figcaption>Bella Rosa</figcaption></figure>
-            <button class="preco" type="button" data-id="bella-rosa" data-nome="Bella Rosa" data-preco="152.00" data-img="assets/img/bella-rosa.jpg"><span class="preco__valor">R$ 152,00</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+            <a class="preco" href="#contato" data-whats="Olá! Vim pelo site e quero encomendar: Bella Rosa (R$ 152,00)." aria-label="Encomendar Bella Rosa, R$ 152,00, pelo WhatsApp"><span class="preco__valor">R$ 152,00</span><span class="preco__acao" aria-hidden="true"><svg><use href="#i-whats"/></svg>Encomendar</span></a>
           </li>
           <li class="produto">
             <figure class="produto__foto"><img src="assets/img/doce-encanto.jpg" alt="Buquê Doce Encanto em papel kraft com girassol e ramos secos" width="640" height="700" loading="lazy"><figcaption>Doce Encanto</figcaption></figure>
-            <button class="preco" type="button" data-id="doce-encanto" data-nome="Doce Encanto" data-preco="125.60" data-img="assets/img/doce-encanto.jpg"><span class="preco__valor">R$ 125,60</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+            <a class="preco" href="#contato" data-whats="Olá! Vim pelo site e quero encomendar: Doce Encanto (R$ 125,60)." aria-label="Encomendar Doce Encanto, R$ 125,60, pelo WhatsApp"><span class="preco__valor">R$ 125,60</span><span class="preco__acao" aria-hidden="true"><svg><use href="#i-whats"/></svg>Encomendar</span></a>
           </li>
           <li class="produto">
             <figure class="produto__foto"><img src="assets/img/primavera.jpg" alt="Arranjo Primavera com rosas pêssego em vaso de vidro" width="640" height="700" loading="lazy"><figcaption>Primavera</figcaption></figure>
-            <button class="preco" type="button" data-id="primavera" data-nome="Primavera" data-preco="204.90" data-img="assets/img/primavera.jpg"><span class="preco__valor">R$ 204,90</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+            <a class="preco" href="#contato" data-whats="Olá! Vim pelo site e quero encomendar: Primavera (R$ 204,90)." aria-label="Encomendar Primavera, R$ 204,90, pelo WhatsApp"><span class="preco__valor">R$ 204,90</span><span class="preco__acao" aria-hidden="true"><svg><use href="#i-whats"/></svg>Encomendar</span></a>
           </li>
           <li class="produto">
             <figure class="produto__foto"><img src="assets/img/jardim-secreto.jpg" alt="Buquê Jardim Secreto, volumoso, com rosas, flores do campo e folhagens" width="640" height="700" loading="lazy"><figcaption>Jardim Secreto</figcaption></figure>
-            <button class="preco" type="button" data-id="jardim-secreto" data-nome="Jardim Secreto" data-preco="136.50" data-img="assets/img/jardim-secreto.jpg"><span class="preco__valor">R$ 136,50</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+            <a class="preco" href="#contato" data-whats="Olá! Vim pelo site e quero encomendar: Jardim Secreto (R$ 136,50)." aria-label="Encomendar Jardim Secreto, R$ 136,50, pelo WhatsApp"><span class="preco__valor">R$ 136,50</span><span class="preco__acao" aria-hidden="true"><svg><use href="#i-whats"/></svg>Encomendar</span></a>
           </li>
           <li class="produto">
             <figure class="produto__foto"><img src="assets/img/tulipas.jpg" alt="Tulipas do Campo, tulipas rosa em vaso de vidro" width="640" height="700" loading="lazy"><figcaption>Tulipas do Campo</figcaption></figure>
-            <button class="preco" type="button" data-id="tulipas" data-nome="Tulipas do Campo" data-preco="109.90" data-img="assets/img/tulipas.jpg"><span class="preco__valor">R$ 109,90</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+            <a class="preco" href="#contato" data-whats="Olá! Vim pelo site e quero encomendar: Tulipas do Campo (R$ 109,90)." aria-label="Encomendar Tulipas do Campo, R$ 109,90, pelo WhatsApp"><span class="preco__valor">R$ 109,90</span><span class="preco__acao" aria-hidden="true"><svg><use href="#i-whats"/></svg>Encomendar</span></a>
           </li>
           <li class="produto">
             <figure class="produto__foto"><img src="assets/img/nuvem-rosa.jpg" alt="Nuvem Rosa, peônia pink com folhas verdes" width="640" height="700" loading="lazy"><figcaption>Nuvem Rosa</figcaption></figure>
-            <button class="preco" type="button" data-id="nuvem-rosa" data-nome="Nuvem Rosa" data-preco="195.00" data-img="assets/img/nuvem-rosa.jpg"><span class="preco__valor">R$ 195,00</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+            <a class="preco" href="#contato" data-whats="Olá! Vim pelo site e quero encomendar: Nuvem Rosa (R$ 195,00)." aria-label="Encomendar Nuvem Rosa, R$ 195,00, pelo WhatsApp"><span class="preco__valor">R$ 195,00</span><span class="preco__acao" aria-hidden="true"><svg><use href="#i-whats"/></svg>Encomendar</span></a>
           </li>
           <li class="produto">
             <figure class="produto__foto"><img src="assets/img/delicata.jpg" alt="Delicata, rosa bicolor rosa e branca de haste longa" width="640" height="700" loading="lazy"><figcaption>Delicata</figcaption></figure>
-            <button class="preco" type="button" data-id="delicata" data-nome="Delicata" data-preco="122.50" data-img="assets/img/delicata.jpg"><span class="preco__valor">R$ 122,50</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+            <a class="preco" href="#contato" data-whats="Olá! Vim pelo site e quero encomendar: Delicata (R$ 122,50)." aria-label="Encomendar Delicata, R$ 122,50, pelo WhatsApp"><span class="preco__valor">R$ 122,50</span><span class="preco__acao" aria-hidden="true"><svg><use href="#i-whats"/></svg>Encomendar</span></a>
           </li>
         </ul>
       </div>
@@ -284,27 +283,27 @@
         <div class="portfolio__janela">
           <ul class="portfolio__trilho">
             <li class="trabalho">
-              <figure><img src="assets/img/port-atelie.jpg" alt="Fachada do ateliê cheia de vasos e baldes de flores" width="900" height="1100" loading="lazy"></figure>
+              <figure><img src="assets/img/port-atelie.jpg" alt="Fachada do ateliê cheia de vasos e baldes de flores" width="900" height="1100" decoding="async"></figure>
               <div class="trabalho__legenda"><span>01</span><h3>Nosso ateliê</h3><p>Jardim Primavera</p></div>
             </li>
             <li class="trabalho">
-              <figure><img src="assets/img/port-copo-de-leite.jpg" alt="Copos-de-leite cor-de-rosa entre folhas verdes" width="900" height="1100" loading="lazy"></figure>
+              <figure><img src="assets/img/port-copo-de-leite.jpg" alt="Copos-de-leite cor-de-rosa entre folhas verdes" width="900" height="1100" decoding="async"></figure>
               <div class="trabalho__legenda"><span>02</span><h3>Copos-de-leite</h3><p>Casamento Ana e Léo</p></div>
             </li>
             <li class="trabalho">
-              <figure><img src="assets/img/port-maes.jpg" alt="Mãos segurando flores coloridas arrumadas em formato de coração" width="900" height="1100" loading="lazy"></figure>
+              <figure><img src="assets/img/port-maes.jpg" alt="Mãos segurando flores coloridas arrumadas em formato de coração" width="900" height="1100" decoding="async"></figure>
               <div class="trabalho__legenda"><span>03</span><h3>Dia das Mães</h3><p>Coleção especial</p></div>
             </li>
             <li class="trabalho">
-              <figure><img src="assets/img/port-lirio.jpg" alt="Lírio rosa em vaso de vidro sobre fundo claro" width="900" height="1100" loading="lazy"></figure>
+              <figure><img src="assets/img/port-lirio.jpg" alt="Lírio rosa em vaso de vidro sobre fundo claro" width="900" height="1100" decoding="async"></figure>
               <div class="trabalho__legenda"><span>04</span><h3>Lírio Estrela</h3><p>Arranjo de mesa</p></div>
             </li>
             <li class="trabalho">
-              <figure><img src="assets/img/port-feira.jpg" alt="Baldes com rosas e flores variadas em uma feira" width="900" height="1100" loading="lazy"></figure>
+              <figure><img src="assets/img/port-feira.jpg" alt="Baldes com rosas e flores variadas em uma feira" width="900" height="1100" decoding="async"></figure>
               <div class="trabalho__legenda"><span>05</span><h3>Feira de Primavera</h3><p>Decoração de evento</p></div>
             </li>
             <li class="trabalho">
-              <figure><img src="assets/img/port-tulipa.jpg" alt="Tulipa rosa em close sobre fundo rosa" width="900" height="1100" loading="lazy"></figure>
+              <figure><img src="assets/img/port-tulipa.jpg" alt="Tulipa rosa em close sobre fundo rosa" width="900" height="1100" decoding="async"></figure>
               <div class="trabalho__legenda"><span>06</span><h3>Tulipa Rosa</h3><p>Ensaio editorial</p></div>
             </li>
           </ul>
@@ -347,16 +346,12 @@
         <div class="contato__conteudo">
           <p class="hero__tag" data-revela><span aria-hidden="true">~</span> Encomendas <span aria-hidden="true">~</span></p>
           <h2 class="titulo-grande" data-split>Vamos montar o seu buquê?</h2>
-          <p class="contato__intro" data-revela>Conte a ocasião e a gente responde pelo WhatsApp em poucos minutos com sugestões e valores.</p>
+          <p class="contato__intro" data-revela>Conte a ocasião e envie direto para o nosso WhatsApp. A gente responde em poucos minutos com sugestões e valores.</p>
 
           <form class="formulario" novalidate data-revela>
             <div class="campo">
               <label for="nome">Seu nome</label>
               <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Maria Souza" required>
-            </div>
-            <div class="campo">
-              <label for="telefone">WhatsApp</label>
-              <input id="telefone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000" required>
             </div>
             <div class="campo">
               <label for="ocasiao">Ocasião</label>
@@ -373,16 +368,37 @@
               <textarea id="mensagem" name="mensagem" rows="3" placeholder="Cores preferidas, data de entrega, recado para o cartão..."></textarea>
             </div>
             <button class="botao" type="submit">
-              <span>Enviar pedido</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h17M14 6l6 6-6 6"/></svg>
+              <svg aria-hidden="true"><use href="#i-whats"/></svg>
+              <span>Enviar pelo WhatsApp</span>
             </button>
           </form>
+        </div>
+      </div>
+    </section>
 
-          <ul class="contato__info" data-revela>
-            <li><strong>Endereço</strong>Rua das Hortênsias, 123<br>Jardim Primavera, São Paulo, SP</li>
+    <!-- Localização -->
+    <section class="local faixa-rosa" aria-labelledby="local-titulo">
+      <div class="container local__grade">
+        <div class="local__cartao" data-revela>
+          <p class="hero__tag"><span aria-hidden="true">~</span> Visite o ateliê <span aria-hidden="true">~</span></p>
+          <h2 id="local-titulo" class="local__titulo">Onde estamos</h2>
+          <ul class="local__info">
+            <li><strong>Endereço</strong>Rua das Hortênsias, 123<br>Jardim Paulista, São Paulo, SP</li>
             <li><strong>Telefone</strong>(11) 3456-7890</li>
             <li><strong>Horário</strong>Seg a sáb, 8h às 20h<br>Dom, 8h às 13h</li>
           </ul>
+          <a class="link-seta" href="https://www.google.com/maps/search/?api=1&amp;query=Jardim%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP" target="_blank" rel="noopener">
+            Como chegar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h17M14 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="local__mapa" data-revela>
+          <iframe
+            title="Mapa com a localização do ateliê Pétala"
+            src="https://maps.google.com/maps?q=Jardim%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP&amp;z=15&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
         </div>
       </div>
     </section>
@@ -429,7 +445,7 @@
         <ul class="redes">
           <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a></li>
           <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M14 8.5h3V5h-3a4 4 0 0 0-4 4v2.5H7.5V15H10v6h3.5v-6H16l.8-3.5h-3.3V9a.5.5 0 0 1 .5-.5z"/></svg></a></li>
-          <li><a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4A8.5 8.5 0 1 1 8.2 19z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.5-2-1.5-2.5-2.5l.8-1-1-2z"/></svg></a></li>
+          <li><a href="#contato" data-whats aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-whats"/></svg></a></li>
         </ul>
       </div>
     </div>
@@ -442,27 +458,12 @@
     </div>
   </footer>
 
-  <!-- Sacola -->
-  <div class="veu" hidden></div>
-  <aside class="sacola" id="sacola" aria-label="Sacola de compras" aria-hidden="true" inert>
-    <div class="sacola__topo">
-      <h2>Sua sacola</h2>
-      <button class="sacola__fechar" type="button" aria-label="Fechar sacola">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
-    <ul class="sacola__lista"></ul>
-    <p class="sacola__vazia">Sua sacola está vazia. Que tal um buquê?</p>
-    <div class="sacola__rodape">
-      <p class="sacola__total"><span>Total</span><strong>R$ 0,00</strong></p>
-      <button class="botao botao--cheio" type="button" data-finalizar>Finalizar pedido</button>
-    </div>
-  </aside>
+  <a class="whats-flutuante" href="#contato" data-whats aria-label="Conversar no WhatsApp">
+    <svg aria-hidden="true"><use href="#i-whats"/></svg>
+  </a>
 
   <button class="voltar-topo" type="button" aria-label="Voltar ao topo">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V4M6 10l6-6 6 6"/></svg>
   </button>
-
-  <div class="aviso" role="status" aria-live="polite"></div>
 </body>
 </html>

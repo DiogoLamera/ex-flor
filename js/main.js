@@ -1,8 +1,15 @@
-/* Interações da página: scroll suave, topo, menu, sacola, formulário e avisos */
+/* Interações da página: scroll suave, topo, menu, links de WhatsApp e formulário */
 (function () {
+  // Número que recebe as encomendas: DDI + DDD + número, só dígitos.
+  // Fictício para a demonstração; troque pelo WhatsApp real da loja.
+  const WHATSAPP = "5511900000000";
+  const MENSAGEM_PADRAO = "Olá! Vim pelo site e quero fazer uma encomenda.";
+
   const raiz = document.documentElement;
   const semMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const temGsap = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
+
+  const App = (window.App = { lenis: null });
 
   // Sem GSAP, nada pode ficar escondido esperando uma animação que não vai rodar
   if (!temGsap) raiz.classList.remove("anim");
@@ -15,7 +22,14 @@
     }
   }, 7000);
 
-  const App = (window.App = { lenis: null });
+  /* ---------- WhatsApp ---------- */
+  const linkWhats = (mensagem) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
+
+  document.querySelectorAll("[data-whats]").forEach((link) => {
+    link.href = linkWhats(link.dataset.whats || MENSAGEM_PADRAO);
+    link.target = "_blank";
+    link.rel = "noopener";
+  });
 
   /* ---------- Scroll suave (Lenis + ticker do GSAP, um único loop de raf) ---------- */
   if (!semMovimento && typeof window.Lenis !== "undefined") {
@@ -39,7 +53,6 @@
       alvo.scrollIntoView({ behavior: semMovimento ? "auto" : "smooth", block: "start" });
     }
   }
-  App.rolarPara = rolarPara;
 
   document.addEventListener("click", (e) => {
     const link = e.target.closest('a[href^="#"]');
@@ -55,25 +68,17 @@
     alvo.focus({ preventScroll: true });
   });
 
-  /* ---------- Avisos ---------- */
-  const aviso = document.querySelector(".aviso");
-  let avisoTimer;
-  function avisar(msg) {
-    aviso.textContent = msg;
-    aviso.classList.add("is-visivel");
-    clearTimeout(avisoTimer);
-    avisoTimer = setTimeout(() => aviso.classList.remove("is-visivel"), 3200);
-  }
-  App.avisar = avisar;
-
   /* ---------- Topo: fundo ao rolar, esconde descendo, volta subindo ---------- */
   const topo = document.querySelector(".topo");
   const voltarTopo = document.querySelector(".voltar-topo");
   let ultimoY = window.scrollY;
+  let yMenuAberto = 0;
 
   function aoRolar(y) {
     topo.classList.toggle("is-rolado", y > 20);
-    if (!document.body.classList.contains("menu-aberto") && Math.abs(y - ultimoY) > 4) {
+    const menuAberto = document.body.classList.contains("menu-aberto");
+    if (menuAberto && Math.abs(y - yMenuAberto) > 80) alternarMenu(false);
+    if (!menuAberto && Math.abs(y - ultimoY) > 4) {
       topo.classList.toggle("is-escondido", y > ultimoY && y > 420);
     }
     voltarTopo.classList.toggle("is-visivel", y > 700);
@@ -86,7 +91,7 @@
   voltarTopo.addEventListener("click", () => rolarPara(0));
 
   // Link ativo no menu conforme a seção visível
-  const linksMenu = document.querySelectorAll(".menu__lista a");
+  const linksMenu = document.querySelectorAll('.menu__lista a[href^="#"]');
   const observador = new IntersectionObserver(
     (entradas) => {
       entradas.forEach((entrada) => {
@@ -101,198 +106,39 @@
     if (secao) observador.observe(secao);
   });
 
-  /* ---------- Menu mobile ---------- */
+  /* ---------- Menu mobile (painel suspenso abaixo do topo) ---------- */
+  const menu = document.querySelector(".menu");
   const menuBtn = document.querySelector(".menu-btn");
 
-  function travarRolagem(travar) {
-    if (App.lenis) travar ? App.lenis.stop() : App.lenis.start();
-    else raiz.style.overflow = travar ? "hidden" : "";
-  }
-
   function alternarMenu(abrir = !document.body.classList.contains("menu-aberto")) {
-    const estava = document.body.classList.contains("menu-aberto");
-    if (abrir === estava) return;
+    if (abrir === document.body.classList.contains("menu-aberto")) return;
     document.body.classList.toggle("menu-aberto", abrir);
     menuBtn.setAttribute("aria-expanded", String(abrir));
     menuBtn.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
-    if (abrir) topo.classList.remove("is-escondido");
-    travarRolagem(abrir);
-  }
-
-  menuBtn.addEventListener("click", () => alternarMenu());
-  window.matchMedia("(min-width: 901px)").addEventListener("change", (e) => e.matches && alternarMenu(false));
-
-  /* ---------- Sacola ---------- */
-  const moeda = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
-  const itens = new Map();
-  const sacola = document.querySelector(".sacola");
-  const sacolaBtn = document.querySelector(".sacola-btn");
-  const sacolaQtd = sacolaBtn.querySelector(".sacola-btn__qtd");
-  const lista = sacola.querySelector(".sacola__lista");
-  const totalEl = sacola.querySelector(".sacola__total strong");
-  const fecharBtn = sacola.querySelector(".sacola__fechar");
-  const veu = document.querySelector(".veu");
-
-  function criarItem(item) {
-    const li = document.createElement("li");
-    li.className = "item";
-
-    const img = document.createElement("img");
-    img.src = item.img;
-    img.alt = "";
-    img.width = 64;
-    img.height = 64;
-
-    const info = document.createElement("div");
-    const nome = document.createElement("p");
-    nome.className = "item__nome";
-    nome.textContent = item.nome;
-    const preco = document.createElement("p");
-    preco.className = "item__preco";
-    preco.textContent = moeda.format(item.preco);
-    info.append(nome, preco);
-
-    const qtd = document.createElement("div");
-    qtd.className = "item__qtd";
-    const menos = document.createElement("button");
-    menos.type = "button";
-    menos.textContent = "−";
-    menos.setAttribute("aria-label", `Tirar um ${item.nome}`);
-    menos.addEventListener("click", () => mudarQtd(item.id, -1));
-    const valor = document.createElement("output");
-    valor.textContent = item.qtd;
-    const mais = document.createElement("button");
-    mais.type = "button";
-    mais.textContent = "+";
-    mais.setAttribute("aria-label", `Adicionar mais um ${item.nome}`);
-    mais.addEventListener("click", () => mudarQtd(item.id, 1));
-    qtd.append(menos, valor, mais);
-
-    li.append(img, info, qtd);
-    return li;
-  }
-
-  function renderizar() {
-    let total = 0;
-    let quantidade = 0;
-    lista.replaceChildren();
-    itens.forEach((item) => {
-      total += item.preco * item.qtd;
-      quantidade += item.qtd;
-      lista.append(criarItem(item));
-    });
-    totalEl.textContent = moeda.format(total);
-    sacolaQtd.textContent = quantidade;
-    sacola.classList.toggle("tem-itens", quantidade > 0);
-    sacolaBtn.classList.toggle("tem-itens", quantidade > 0);
-    sacolaBtn.setAttribute("aria-label", `Abrir sacola, ${quantidade} ${quantidade === 1 ? "item" : "itens"}`);
-  }
-
-  function mudarQtd(id, delta) {
-    const item = itens.get(id);
-    if (!item) return;
-    item.qtd += delta;
-    if (item.qtd <= 0) itens.delete(id);
-    renderizar();
-    if (!itens.size) fecharBtn.focus();
-  }
-
-  function sacudirSacola() {
-    if (!temGsap || semMovimento) return;
-    gsap.fromTo(sacolaBtn.querySelector("svg"), { rotation: -16 }, { rotation: 0, duration: 0.9, ease: "elastic.out(1.2, 0.3)" });
-    gsap.fromTo(sacolaQtd, { scale: 1.7 }, { scale: 1, duration: 0.7, ease: "back.out(3)", clearProps: "transform" });
-  }
-
-  // Miniatura do buquê voa em arco até o ícone da sacola
-  function voarParaSacola(foto, aoChegar) {
-    if (!temGsap || semMovimento) return aoChegar();
-    topo.classList.remove("is-escondido");
-
-    const de = foto.getBoundingClientRect();
-    const para = sacolaBtn.getBoundingClientRect();
-    const voo = document.createElement("img");
-    voo.src = foto.currentSrc || foto.src;
-    voo.alt = "";
-    voo.className = "voo";
-    document.body.append(voo);
-
-    const x0 = de.left + de.width / 2 - 32;
-    const y0 = de.top + de.height / 2 - 32;
-    const x1 = para.left + para.width / 2 - 32;
-    const y1 = para.top + para.height / 2 - 32;
-
-    gsap.set(voo, { left: 0, top: 0, x: x0, y: y0, scale: 0.4, opacity: 0 });
-    gsap
-      .timeline({ onComplete: () => { voo.remove(); aoChegar(); } })
-      .to(voo, { scale: 1.5, opacity: 1, duration: 0.3, ease: "back.out(2)" })
-      .to(voo, { x: x1, duration: 0.8, ease: "power2.inOut" }, 0.25)
-      .to(voo, { y: y1, duration: 0.8, ease: "back.in(1.6)" }, 0.25)
-      .to(voo, { scale: 0.3, duration: 0.8, ease: "power2.in" }, 0.25);
-  }
-
-  document.querySelectorAll(".preco").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const { id, nome, preco, img } = btn.dataset;
-      const item = itens.get(id) || { id, nome, preco: Number(preco), img, qtd: 0 };
-      item.qtd += 1;
-      itens.set(id, item);
-      voarParaSacola(btn.closest(".produto").querySelector("img"), () => {
-        renderizar();
-        sacudirSacola();
-      });
-      avisar(`${nome} foi para a sacola`);
-    });
-  });
-
-  let focoAntes = null;
-  function abrirSacola(abrir) {
-    sacola.classList.toggle("is-aberta", abrir);
-    sacola.setAttribute("aria-hidden", String(!abrir));
-    sacola.inert = !abrir;
-    sacolaBtn.setAttribute("aria-expanded", String(abrir));
-    travarRolagem(abrir);
-
     if (abrir) {
-      focoAntes = document.activeElement;
-      veu.hidden = false;
-      void veu.offsetWidth; // força o reflow para a transição de opacidade rodar
-      veu.classList.add("is-visivel");
-      fecharBtn.focus();
-    } else {
-      veu.classList.remove("is-visivel");
-      setTimeout(() => { if (!sacola.classList.contains("is-aberta")) veu.hidden = true; }, 400);
-      (focoAntes || sacolaBtn).focus();
+      yMenuAberto = App.lenis ? App.lenis.scroll : window.scrollY;
+      topo.classList.remove("is-escondido");
     }
   }
 
-  sacolaBtn.addEventListener("click", () => abrirSacola(true));
-  fecharBtn.addEventListener("click", () => abrirSacola(false));
-  veu.addEventListener("click", () => abrirSacola(false));
-  sacola.querySelector("[data-finalizar]").addEventListener("click", () => {
-    avisar(itens.size ? "Site de demonstração: nenhum pedido foi enviado." : "Escolha um buquê primeiro.");
-  });
+  menuBtn.addEventListener("click", () => alternarMenu());
+  menu.addEventListener("click", (e) => e.target.closest("a") && alternarMenu(false));
 
+  // Fecha ao tocar fora do painel, ao apertar Esc ou ao voltar para o desktop
+  document.addEventListener("click", (e) => {
+    if (!document.body.classList.contains("menu-aberto")) return;
+    if (!menu.contains(e.target) && !menuBtn.contains(e.target)) alternarMenu(false);
+  });
   document.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    if (sacola.classList.contains("is-aberta")) abrirSacola(false);
-    else if (document.body.classList.contains("menu-aberto")) {
+    if (e.key === "Escape" && document.body.classList.contains("menu-aberto")) {
       alternarMenu(false);
       menuBtn.focus();
     }
   });
+  window.matchMedia("(min-width: 901px)").addEventListener("change", (e) => e.matches && alternarMenu(false));
 
-  /* ---------- Formulário ---------- */
+  /* ---------- Formulário: monta a mensagem e abre o WhatsApp ---------- */
   const form = document.querySelector(".formulario");
-  const telefone = form.querySelector("#telefone");
-
-  // Máscara simples: (11) 91234-5678
-  telefone.addEventListener("input", () => {
-    const d = telefone.value.replace(/\D/g, "").slice(0, 11);
-    let v = d;
-    if (d.length > 2) v = `(${d.slice(0, 2)}) ${d.slice(2)}`;
-    if (d.length > 7) v = `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`;
-    telefone.value = v;
-  });
 
   function marcarErro(input, msg) {
     const campo = input.closest(".campo");
@@ -314,19 +160,20 @@
     e.preventDefault();
     const nome = form.querySelector("#nome");
     const erroNome = nome.value.trim().length < 2 ? "Conte pra gente o seu nome." : "";
-    const erroTel = telefone.value.replace(/\D/g, "").length < 10 ? "Informe um WhatsApp com DDD." : "";
     marcarErro(nome, erroNome);
-    marcarErro(telefone, erroTel);
-    if (erroNome || erroTel) {
-      (erroNome ? nome : telefone).focus();
+    if (erroNome) {
+      nome.focus();
       return;
     }
 
-    const botao = form.querySelector(".botao span");
-    const primeiroNome = nome.value.trim().split(" ")[0];
-    botao.textContent = "Pedido enviado!";
-    avisar(`Obrigado, ${primeiroNome}! Como é uma demonstração, nada foi enviado de verdade.`);
-    form.reset();
-    setTimeout(() => (botao.textContent = "Enviar pedido"), 3500);
+    const ocasiao = form.querySelector("#ocasiao").value;
+    const detalhes = form.querySelector("#mensagem").value.trim();
+    const linhas = [
+      `Olá! Meu nome é ${nome.value.trim()} e quero encomendar um buquê.`,
+      `Ocasião: ${ocasiao}`,
+      detalhes && `Detalhes: ${detalhes}`,
+    ].filter(Boolean);
+
+    window.open(linkWhats(linhas.join("\n")), "_blank", "noopener");
   });
 })();
