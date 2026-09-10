@@ -266,6 +266,24 @@ svg:has(> use[href="#i-whats"]) { fill: currentColor; flex-shrink: 0; }
 
 .hero__midia { position: relative; z-index: 1; }
 
+/* Desktop: o hero ocupa exatamente a primeira tela e a foto é dimensionada
+   pela altura disponível, para aparecer inteira logo ao abrir o site */
+@media (min-width: 901px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: calc(var(--topo-altura) + 12px);
+    padding-bottom: 36px;
+  }
+  .hero__grid { grid-template-columns: auto minmax(0, 1fr); }
+  .hero__midia {
+    width: min(46vw, 580px, max(300px, calc((100svh - var(--topo-altura) - 76px) / 1.03)));
+  }
+}
+
 .hero__foto {
   position: relative;
   z-index: 1;
