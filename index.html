@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pétala Ateliê Floral | Buquês e arranjos feitos à mão</title>
+  <meta name="description" content="Buquês e arranjos montados à mão com flores frescas. Entrega em até 1 hora e foto do buquê antes da entrega.">
+  <meta name="theme-color" content="#fceaea">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23f2b8c0' stroke='%231f1a1b' stroke-width='1.4'%3E%3Cellipse cx='16' cy='9' rx='4.2' ry='6.5'/%3E%3Cellipse cx='16' cy='9' rx='4.2' ry='6.5' transform='rotate(72 16 16)'/%3E%3Cellipse cx='16' cy='9' rx='4.2' ry='6.5' transform='rotate(144 16 16)'/%3E%3Cellipse cx='16' cy='9' rx='4.2' ry='6.5' transform='rotate(216 16 16)'/%3E%3Cellipse cx='16' cy='9' rx='4.2' ry='6.5' transform='rotate(288 16 16)'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%231f1a1b'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;500&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="assets/img/hero.jpg">
+
+  <script>
+    // Estados iniciais das animações só existem quando o movimento está liberado
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("anim");
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" defer></script>
+  <script src="js/ramos.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/animacoes.js" defer></script>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="progresso" aria-hidden="true"><span class="progresso__barra"></span></div>
+
+  <!-- Tela de abertura -->
+  <div class="abertura" aria-hidden="true">
+    <div class="abertura__marca">
+      <svg class="abertura__flor" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="0.9">
+        <ellipse cx="16" cy="9" rx="4.2" ry="6.5"/>
+        <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(72 16 16)"/>
+        <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(144 16 16)"/>
+        <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(216 16 16)"/>
+        <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(288 16 16)"/>
+        <circle cx="16" cy="16" r="2.4"/>
+      </svg>
+      <span class="abertura__nome">pétala</span>
+    </div>
+    <div class="abertura__cortina"></div>
+  </div>
+
+  <!-- Topo -->
+  <header class="topo">
+    <div class="container topo__inner">
+      <a class="logo" href="#inicio" aria-label="Pétala Ateliê Floral, voltar ao início">
+        <svg class="logo__flor" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <ellipse cx="16" cy="9" rx="4.2" ry="6.5"/>
+          <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(72 16 16)"/>
+          <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(144 16 16)"/>
+          <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(216 16 16)"/>
+          <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(288 16 16)"/>
+          <circle cx="16" cy="16" r="2.4"/>
+        </svg>
+        <span>pétala</span>
+      </a>
+
+      <nav class="menu" id="menu" aria-label="Principal">
+        <ul class="menu__lista">
+          <li style="--i:0"><a href="#inicio">Início</a></li>
+          <li style="--i:1"><a href="#loja">Loja</a></li>
+          <li style="--i:2"><a href="#contato">Contato</a></li>
+          <li style="--i:3"><a href="#portfolio">Portfólio</a></li>
+        </ul>
+      </nav>
+
+      <div class="topo__acoes">
+        <button class="sacola-btn" type="button" aria-label="Abrir sacola, 0 itens" aria-controls="sacola" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+          </svg>
+          <span class="sacola-btn__qtd" aria-hidden="true">0</span>
+        </button>
+        <button class="menu-btn" type="button" aria-label="Abrir menu" aria-controls="menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+      <div class="petalas" aria-hidden="true"></div>
+
+      <div class="container hero__grid">
+        <div class="hero__midia">
+          <div class="ramo ramo--hero-a" data-ramo="longo" aria-hidden="true"></div>
+          <div class="ramo ramo--hero-b" data-ramo="curto" aria-hidden="true"></div>
+          <figure class="hero__foto">
+            <img src="assets/img/hero.jpg" alt="Buquê de rosas e flores claras em tons de rosa sobre uma mesa de madeira" width="1000" height="1040" fetchpriority="high">
+          </figure>
+          <div class="ramo ramo--hero-c" data-ramo="curto" aria-hidden="true"></div>
+          <p class="selo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 6h12v10h-12z"/><path d="M13.5 9.5h4l3.5 3.5V16h-7.5"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>
+            Entrega em até 1 hora
+          </p>
+        </div>
+
+        <div class="hero__texto">
+          <p class="hero__tag"><span aria-hidden="true">~</span> Ateliê de flores <span aria-hidden="true">~</span></p>
+          <h1 class="hero__titulo">
+            <span class="marca-texto">
+              <span class="marca-texto__barra" aria-hidden="true"></span>
+              <span class="marca-texto__txt">Flores</span>
+            </span>
+          </h1>
+          <p class="hero__desc">Aqui você encontra o buquê mais perfeito para cada momento, montado à mão com flores colhidas no dia.</p>
+          <a class="link-seta" href="#sobre">
+            Saiba mais
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h17M14 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="ramo ramo--hero-d" data-ramo="flor" aria-hidden="true"></div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="sobre faixa-rosa" id="sobre">
+      <div class="container sobre__grid">
+        <div class="sobre__texto">
+          <div class="bloco" data-revela>
+            <h2 class="bloco__titulo">Nossos buquês</h2>
+            <span class="bloco__linha" aria-hidden="true"></span>
+            <p>Nossas floristas ajudam você a escolher um buquê com a sua cara, do clássico ao mais ousado.</p>
+          </div>
+          <div class="bloco" data-revela>
+            <h2 class="bloco__titulo">Nossos preços</h2>
+            <span class="bloco__linha" aria-hidden="true"></span>
+            <p>Arranjos a partir de R$ 79,90, com opções para presentear sem pesar no bolso.</p>
+          </div>
+          <span class="sobre__divisor" aria-hidden="true"></span>
+        </div>
+
+        <div class="sobre__fotos">
+          <figure class="foto-mascara">
+            <img src="assets/img/buque-branco.jpg" alt="Mão segurando buquê de rosas brancas embrulhado em papel kraft" width="720" height="820" loading="lazy">
+          </figure>
+          <figure class="foto-mascara">
+            <img src="assets/img/peonias.jpg" alt="Peônias cor-de-rosa bem abertas" width="720" height="820" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Faixa animada -->
+    <div class="faixa" aria-hidden="true">
+      <div class="faixa__trilho">
+        <div class="faixa__grupo">
+          <span>Rosas</span><i></i><span>Peônias</span><i></i><span>Tulipas</span><i></i><span>Lírios</span><i></i><span>Girassóis</span><i></i><span>Hortênsias</span><i></i><span>Copos-de-leite</span><i></i><span>Cravos</span><i></i>
+        </div>
+        <div class="faixa__grupo">
+          <span>Rosas</span><i></i><span>Peônias</span><i></i><span>Tulipas</span><i></i><span>Lírios</span><i></i><span>Girassóis</span><i></i><span>Hortênsias</span><i></i><span>Copos-de-leite</span><i></i><span>Cravos</span><i></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buquês em alta -->
+    <section class="alta" id="loja">
+      <div class="ramo ramo--alta-a" data-ramo="longo" aria-hidden="true"></div>
+      <div class="ramo ramo--alta-b" data-ramo="flor" aria-hidden="true"></div>
+      <div class="ramo ramo--alta-c" data-ramo="curto" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="cabecalho-secao">
+          <h2 class="titulo-secao titulo-secao--ponto" data-split>Buquês em alta</h2>
+          <p class="cabecalho-secao__apoio" data-revela>Os queridinhos da semana. Toque no preço para colocar na sacola.</p>
+        </div>
+
+        <ul class="produtos">
+          <li class="produto">
+            <figure class="produto__foto"><img src="assets/img/aurora.jpg" alt="Buquê Aurora com rosas creme e cravos rosados" width="640" height="700" loading="lazy"><figcaption>Buquê Aurora</figcaption></figure>
+            <button class="preco" type="button" data-id="aurora" data-nome="Buquê Aurora" data-preco="129.90" data-img="assets/img/aurora.jpg"><span class="preco__valor">R$ 129,90</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+          </li>
+          <li class="produto">
+            <figure class="produto__foto"><img src="assets/img/bella-rosa.jpg" alt="Arranjo Bella Rosa com rosas pink, creme e brancas" width="640" height="700" loading="lazy"><figcaption>Bella Rosa</figcaption></figure>
+            <button class="preco" type="button" data-id="bella-rosa" data-nome="Bella Rosa" data-preco="152.00" data-img="assets/img/bella-rosa.jpg"><span class="preco__valor">R$ 152,00</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+          </li>
+          <li class="produto">
+            <figure class="produto__foto"><img src="assets/img/doce-encanto.jpg" alt="Buquê Doce Encanto em papel kraft com girassol e ramos secos" width="640" height="700" loading="lazy"><figcaption>Doce Encanto</figcaption></figure>
+            <button class="preco" type="button" data-id="doce-encanto" data-nome="Doce Encanto" data-preco="125.60" data-img="assets/img/doce-encanto.jpg"><span class="preco__valor">R$ 125,60</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+          </li>
+          <li class="produto">
+            <figure class="produto__foto"><img src="assets/img/primavera.jpg" alt="Arranjo Primavera com rosas pêssego em vaso de vidro" width="640" height="700" loading="lazy"><figcaption>Primavera</figcaption></figure>
+            <button class="preco" type="button" data-id="primavera" data-nome="Primavera" data-preco="204.90" data-img="assets/img/primavera.jpg"><span class="preco__valor">R$ 204,90</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+          </li>
+          <li class="produto">
+            <figure class="produto__foto"><img src="assets/img/jardim-secreto.jpg" alt="Buquê Jardim Secreto, volumoso, com rosas, flores do campo e folhagens" width="640" height="700" loading="lazy"><figcaption>Jardim Secreto</figcaption></figure>
+            <button class="preco" type="button" data-id="jardim-secreto" data-nome="Jardim Secreto" data-preco="136.50" data-img="assets/img/jardim-secreto.jpg"><span class="preco__valor">R$ 136,50</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+          </li>
+          <li class="produto">
+            <figure class="produto__foto"><img src="assets/img/tulipas.jpg" alt="Tulipas do Campo, tulipas rosa em vaso de vidro" width="640" height="700" loading="lazy"><figcaption>Tulipas do Campo</figcaption></figure>
+            <button class="preco" type="button" data-id="tulipas" data-nome="Tulipas do Campo" data-preco="109.90" data-img="assets/img/tulipas.jpg"><span class="preco__valor">R$ 109,90</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+          </li>
+          <li class="produto">
+            <figure class="produto__foto"><img src="assets/img/nuvem-rosa.jpg" alt="Nuvem Rosa, peônia pink com folhas verdes" width="640" height="700" loading="lazy"><figcaption>Nuvem Rosa</figcaption></figure>
+            <button class="preco" type="button" data-id="nuvem-rosa" data-nome="Nuvem Rosa" data-preco="195.00" data-img="assets/img/nuvem-rosa.jpg"><span class="preco__valor">R$ 195,00</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+          </li>
+          <li class="produto">
+            <figure class="produto__foto"><img src="assets/img/delicata.jpg" alt="Delicata, rosa bicolor rosa e branca de haste longa" width="640" height="700" loading="lazy"><figcaption>Delicata</figcaption></figure>
+            <button class="preco" type="button" data-id="delicata" data-nome="Delicata" data-preco="122.50" data-img="assets/img/delicata.jpg"><span class="preco__valor">R$ 122,50</span><span class="preco__acao" aria-hidden="true">+ sacola</span></button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Por que nos escolher -->
+    <section class="porque faixa-rosa">
+      <div class="container">
+        <h2 class="titulo-sc" data-split>Por que nos escolher?</h2>
+
+        <ul class="vantagens">
+          <li class="vantagem">
+            <svg class="vantagem__icone" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 16v18h28V16"/><path d="M4 16l3.5-9h25L36 16z"/><path d="M4 16c0 2.5 2 4 4 4s4-1.5 4-4c0 2.5 2 4 4 4s4-1.5 4-4c0 2.5 2 4 4 4s4-1.5 4-4c0 2.5 2 4 4 4s4-1.5 4-4"/><path d="M16 34v-9h8v9"/>
+            </svg>
+            <div>
+              <h3><span class="contador" data-alvo="15">15</span> lojas na cidade</h3>
+              <p>Nos melhores bairros da cidade, sempre pertinho de você.</p>
+            </div>
+          </li>
+          <li class="vantagem">
+            <svg class="vantagem__icone" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 10h16v17H9z"/><path d="M25 15h6l5 6v6H25"/><circle cx="15" cy="29" r="3"/><circle cx="30" cy="29" r="3"/><path d="M1 14h5M2 19h4M3 24h3"/>
+            </svg>
+            <div>
+              <h3>Entrega expressa</h3>
+              <p>Nossos entregadores levam o seu buquê em até 1 hora.</p>
+            </div>
+          </li>
+          <li class="vantagem">
+            <svg class="vantagem__icone" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 36V20"/><path d="M20 20c-6-1-9-5-9-10 4 0 7 2 9 5 2-3 5-5 9-5 0 5-3 9-9 10z"/><path d="M20 15c-2-3-2-7 0-10 2 3 2 7 0 10z"/><path d="M20 28c-4 0-7-2-8-5 4 0 6 1 8 3"/><path d="M20 30c4 0 7-2 8-5-4 0-6 1-8 3"/>
+            </svg>
+            <div>
+              <h3>Foto das flores</h3>
+              <p>Enviamos uma foto do buquê antes de sair para a entrega.</p>
+            </div>
+          </li>
+          <li class="vantagem">
+            <svg class="vantagem__icone" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M8 33C8 18 17 8 33 7c0 16-10 26-25 26z"/><path d="M8 33L25 16"/><path d="M15 26h7M19 22v-6"/>
+            </svg>
+            <div>
+              <h3>Flores frescas</h3>
+              <p>Recebemos flores de produtores locais todas as manhãs.</p>
+            </div>
+          </li>
+          <li class="vantagem">
+            <svg class="vantagem__icone" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 11h30v20H5z"/><path d="M5 11l15 11 15-11"/><path d="M20 30c-3-2.5-5-4-5-6a2.5 2.5 0 0 1 5-1 2.5 2.5 0 0 1 5 1c0 2-2 3.5-5 6z"/>
+            </svg>
+            <div>
+              <h3>Cartão personalizado</h3>
+              <p>Escreva sua mensagem e a gente capricha na caligrafia.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section class="portfolio" id="portfolio">
+      <div class="portfolio__fixo">
+        <div class="container portfolio__cabecalho">
+          <h2 class="titulo-secao titulo-secao--ponto" data-split>Portfólio</h2>
+          <p data-revela>Alguns trabalhos que fizeram a gente suspirar. Arraste ou role para ver mais.</p>
+        </div>
+
+        <div class="portfolio__janela">
+          <ul class="portfolio__trilho">
+            <li class="trabalho">
+              <figure><img src="assets/img/port-atelie.jpg" alt="Fachada do ateliê cheia de vasos e baldes de flores" width="900" height="1100" loading="lazy"></figure>
+              <div class="trabalho__legenda"><span>01</span><h3>Nosso ateliê</h3><p>Jardim Primavera</p></div>
+            </li>
+            <li class="trabalho">
+              <figure><img src="assets/img/port-copo-de-leite.jpg" alt="Copos-de-leite cor-de-rosa entre folhas verdes" width="900" height="1100" loading="lazy"></figure>
+              <div class="trabalho__legenda"><span>02</span><h3>Copos-de-leite</h3><p>Casamento Ana e Léo</p></div>
+            </li>
+            <li class="trabalho">
+              <figure><img src="assets/img/port-maes.jpg" alt="Mãos segurando flores coloridas arrumadas em formato de coração" width="900" height="1100" loading="lazy"></figure>
+              <div class="trabalho__legenda"><span>03</span><h3>Dia das Mães</h3><p>Coleção especial</p></div>
+            </li>
+            <li class="trabalho">
+              <figure><img src="assets/img/port-lirio.jpg" alt="Lírio rosa em vaso de vidro sobre fundo claro" width="900" height="1100" loading="lazy"></figure>
+              <div class="trabalho__legenda"><span>04</span><h3>Lírio Estrela</h3><p>Arranjo de mesa</p></div>
+            </li>
+            <li class="trabalho">
+              <figure><img src="assets/img/port-feira.jpg" alt="Baldes com rosas e flores variadas em uma feira" width="900" height="1100" loading="lazy"></figure>
+              <div class="trabalho__legenda"><span>05</span><h3>Feira de Primavera</h3><p>Decoração de evento</p></div>
+            </li>
+            <li class="trabalho">
+              <figure><img src="assets/img/port-tulipa.jpg" alt="Tulipa rosa em close sobre fundo rosa" width="900" height="1100" loading="lazy"></figure>
+              <div class="trabalho__legenda"><span>06</span><h3>Tulipa Rosa</h3><p>Ensaio editorial</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="depoimentos faixa-rosa">
+      <div class="container">
+        <h2 class="titulo-sc" data-split>Quem recebe, conta</h2>
+        <ul class="depoimentos__lista">
+          <li class="depoimento">
+            <div class="estrelas" aria-label="Nota 5 de 5"><i></i><i></i><i></i><i></i><i></i></div>
+            <blockquote>“O buquê chegou em 40 minutos e ainda recebi a foto antes da entrega. Minha mãe se emocionou!”</blockquote>
+            <p class="depoimento__autor">Mariana Costa <span>cliente desde 2023</span></p>
+          </li>
+          <li class="depoimento">
+            <div class="estrelas" aria-label="Nota 5 de 5"><i></i><i></i><i></i><i></i><i></i></div>
+            <blockquote>“Encomendamos os arranjos do nosso casamento e ficou tudo exatamente como a gente sonhou.”</blockquote>
+            <p class="depoimento__autor">Rafael e Júlia <span>casamento em maio</span></p>
+          </li>
+          <li class="depoimento">
+            <div class="estrelas" aria-label="Nota 5 de 5"><i></i><i></i><i></i><i></i><i></i></div>
+            <blockquote>“Atendimento carinhoso e flores que duram mais de uma semana no vaso. Virei cliente fiel.”</blockquote>
+            <p class="depoimento__autor">Beatriz Lima <span>cliente desde 2021</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contato" id="contato">
+      <div class="ramo ramo--contato" data-ramo="flor" aria-hidden="true"></div>
+      <div class="container contato__grid">
+        <figure class="contato__foto foto-mascara">
+          <img src="assets/img/contato.jpg" alt="Arranjo de rosas laranja e flores do campo em vaso de vidro" width="800" height="900" loading="lazy">
+        </figure>
+
+        <div class="contato__conteudo">
+          <p class="hero__tag" data-revela><span aria-hidden="true">~</span> Encomendas <span aria-hidden="true">~</span></p>
+          <h2 class="titulo-grande" data-split>Vamos montar o seu buquê?</h2>
+          <p class="contato__intro" data-revela>Conte a ocasião e a gente responde pelo WhatsApp em poucos minutos com sugestões e valores.</p>
+
+          <form class="formulario" novalidate data-revela>
+            <div class="campo">
+              <label for="nome">Seu nome</label>
+              <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Maria Souza" required>
+            </div>
+            <div class="campo">
+              <label for="telefone">WhatsApp</label>
+              <input id="telefone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 90000-0000" required>
+            </div>
+            <div class="campo">
+              <label for="ocasiao">Ocasião</label>
+              <select id="ocasiao" name="ocasiao">
+                <option>Aniversário</option>
+                <option>Amor e namoro</option>
+                <option>Casamento</option>
+                <option>Agradecimento</option>
+                <option>Só porque sim</option>
+              </select>
+            </div>
+            <div class="campo campo--cheio">
+              <label for="mensagem">Mensagem <span>(opcional)</span></label>
+              <textarea id="mensagem" name="mensagem" rows="3" placeholder="Cores preferidas, data de entrega, recado para o cartão..."></textarea>
+            </div>
+            <button class="botao" type="submit">
+              <span>Enviar pedido</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h17M14 6l6 6-6 6"/></svg>
+            </button>
+          </form>
+
+          <ul class="contato__info" data-revela>
+            <li><strong>Endereço</strong>Rua das Hortênsias, 123<br>Jardim Primavera, São Paulo, SP</li>
+            <li><strong>Telefone</strong>(11) 3456-7890</li>
+            <li><strong>Horário</strong>Seg a sáb, 8h às 20h<br>Dom, 8h às 13h</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__grid">
+      <div class="rodape__marca">
+        <a class="logo" href="#inicio">
+          <svg class="logo__flor" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+            <ellipse cx="16" cy="9" rx="4.2" ry="6.5"/>
+            <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(72 16 16)"/>
+            <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(144 16 16)"/>
+            <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(216 16 16)"/>
+            <ellipse cx="16" cy="9" rx="4.2" ry="6.5" transform="rotate(288 16 16)"/>
+            <circle cx="16" cy="16" r="2.4"/>
+          </svg>
+          <span>pétala</span>
+        </a>
+        <p>Flores frescas, montadas à mão e entregues com carinho desde 2014.</p>
+      </div>
+
+      <nav aria-label="Rodapé">
+        <h3>Navegue</h3>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#loja">Loja</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h3>Fale com a gente</h3>
+        <ul>
+          <li>(11) 3456-7890</li>
+          <li>ola@petalaflores.com.br</li>
+          <li>Rua das Hortênsias, 123</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Siga</h3>
+        <ul class="redes">
+          <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a></li>
+          <li><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M14 8.5h3V5h-3a4 4 0 0 0-4 4v2.5H7.5V15H10v6h3.5v-6H16l.8-3.5h-3.3V9a.5.5 0 0 1 .5-.5z"/></svg></a></li>
+          <li><a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4A8.5 8.5 0 1 1 8.2 19z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.5-2-1.5-2.5-2.5l.8-1-1-2z"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="rodape__gigante" aria-hidden="true">pétala</p>
+
+    <div class="container rodape__base">
+      <p>© 2026 Pétala Ateliê Floral. Site de demonstração com dados fictícios.</p>
+      <p>Fotos: Unsplash</p>
+    </div>
+  </footer>
+
+  <!-- Sacola -->
+  <div class="veu" hidden></div>
+  <aside class="sacola" id="sacola" aria-label="Sacola de compras" aria-hidden="true" inert>
+    <div class="sacola__topo">
+      <h2>Sua sacola</h2>
+      <button class="sacola__fechar" type="button" aria-label="Fechar sacola">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <ul class="sacola__lista"></ul>
+    <p class="sacola__vazia">Sua sacola está vazia. Que tal um buquê?</p>
+    <div class="sacola__rodape">
+      <p class="sacola__total"><span>Total</span><strong>R$ 0,00</strong></p>
+      <button class="botao botao--cheio" type="button" data-finalizar>Finalizar pedido</button>
+    </div>
+  </aside>
+
+  <button class="voltar-topo" type="button" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V4M6 10l6-6 6 6"/></svg>
+  </button>
+
+  <div class="aviso" role="status" aria-live="polite"></div>
+</body>
+</html>
