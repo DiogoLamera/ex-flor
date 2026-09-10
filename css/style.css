@@ -178,10 +178,11 @@ input, select, textarea { font: inherit; color: inherit; }
   gap: clamp(20px, 3.4vw, 48px);
   padding: 2px 34px 0;
 }
+/* Faixa de marca-texto passando por trás da metade de baixo dos links */
 .menu__lista::before {
   content: "";
   position: absolute;
-  inset: 0 0 42% 0;
+  inset: 44% 0 20% 0;
   background: var(--rosa);
   z-index: -1;
   transform-origin: left center;
@@ -343,11 +344,12 @@ input, select, textarea { font: inherit; color: inherit; }
   margin-bottom: clamp(18px, 2.4vw, 28px);
 }
 .marca-texto { position: relative; display: inline-block; }
+/* Marca-texto atrás da metade de baixo das letras */
 .marca-texto__barra {
   position: absolute;
-  left: -0.14em;
-  right: 0.02em;
-  top: -0.04em;
+  left: -0.1em;
+  right: -0.06em;
+  top: 0.5em;
   height: 0.3em;
   background: var(--rosa);
   z-index: -1;
